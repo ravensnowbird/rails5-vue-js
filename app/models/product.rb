@@ -40,6 +40,6 @@ class Product < ApplicationRecord
   end
 
   def image_url
-    "/assets/#{category}.jpg"
+    "/#{category}.jpg"
   end
 end
