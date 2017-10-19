@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+categories = ["Lock-it Foundation", "Facemask", "Eye-liner"]
+names = ["KAT VON D", "VON KAT A", "BON DAT C"]
+
+10.times do
+  price = (1000..2000).step(500).to_a.sample
+  sale_percentage = [5, 10, 15, 20].sample
+  sale_price = (price.to_f - (price.to_f * (sale_percentage.to_f/100) )).to_i
+  Product.create name: names.sample,
+    sold_out: [true, false].sample,
+    category: categories.sample,
+    under_sale: [true, false].sample,
+    price: price,
+    sale_price: sale_price,
+    sale_text: "#{sale_percentage}% OFF"
+end
