@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019033253) do
+ActiveRecord::Schema.define(version: 20171019081701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171019033253) do
     t.string "sale_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sale_percentage"
   end
 
 end

@@ -3,13 +3,12 @@
 <br>
 <div  id="products" >
 <div>
-
   <form class="form-inline">
     <div class="container">
     <div class="row">
       <div class="col-md-3">
         <div class="form-group">
-          <select class="form-control">
+          <select @change="filterChanged" v-model="selectedCategory" class="form-control">
             <option value="">Select Category</option>
             <option value="Lock-it Foundation">Lock-it Foundation</option>
             <option value="Facemask">Facemask</option>
@@ -19,23 +18,23 @@
       </div>
       <div class="col-md-2">
         <div class="form-group">
-          <input type="text" style="width: 130px;" class="form-control" placeholder="Minimun">
+          <input @keyup="filterChanged"  @change="fetchProducts" v-model="minimum" type="text" style="width: 130px;" class="form-control" placeholder="Minimun">
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-group">
-          <input type="text" style="width: 130px;" class="form-control" placeholder="Maximum">
+          <input @keyup="filterChanged"  @change="fetchProducts" v-model="maximum" type="text" style="width: 130px;" class="form-control" placeholder="Maximum">
         </div>
       </div>
 
 
 
       <div class="col-md-2">
-        <div class="form-group ">
-          <select class="form-control">
+        <div  class="form-group ">
+          <select  @change="filterChanged" v-model="sortBy" class="form-control">
             <option value="">Sort by</option>
-            <option value="Lock-it Foundation">Price</option>
-            <option value="Lock-it Foundation">Offer</option>
+            <option value="price">Price</option>
+            <option value="offer">Offer</option>
           </select>
         </div>
       </div>
@@ -43,7 +42,7 @@
         <div class="form-group ">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input">
+              <input  @change="filterChanged" v-model="available"  type="checkbox" class="form-check-input">
               Available products only
             </label>
           </div>
@@ -64,13 +63,22 @@
       <div class="card-body">
         <h6 class="card-title">{{product.name}}</h6>
         <h6 class="card-subtitle mb-2 text-muted">{{product.category}}</h6>
-        <p v-if="!product.under_sale" class="card-text"><b>${{product.price}}</b></p>
-        <p v-if="product.under_sale" class="card-text"><b>${{product.sale_price}} </b> <span class="strike-through">${{product.price}}</span> <span class="upcase">{{product.sale_text}}</span></p>
+        <p v-if="!product.under_sale" class="card-text"><b>${{(product.price/100).toFixed( 2 )}}</b></p>
+        <p v-if="product.under_sale" class="card-text"><b>${{(product.sale_price/100).toFixed( 2 )}} </b> <span class="strike-through">${{(product.price/100).toFixed( 2 )}}</span> <span class="upcase">{{product.sale_text}}</span></p>
 
       </div>
     </div>
     <br>
   </div>
 
+</div>
+
+<div class="v-paginator"><button :disabled="page == 1" v-on:click="previousPage" class="btn btn-default">
+      Previous
+    </button>
+    &nbsp;&nbsp;&nbsp;
+    <button  v-on:click="nextPage" class="btn btn-default">
+      Next
+    </button>
 </div>
 </div>

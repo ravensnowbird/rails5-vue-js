@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.scope(params)
     respond_to do |format|
       format.html
       format.json {render :json => @products.to_json(:methods => [:image_url])}
@@ -75,4 +75,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :sold_out, :category, :under_sale, :price, :sale_price, :sale_text)
     end
+
 end
