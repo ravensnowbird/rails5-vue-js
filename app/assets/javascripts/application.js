@@ -14,6 +14,10 @@
 //= require rails-ujs
 //= require popper
 //= require bootstrap
+//= require vue
+//= require vue-router
+//= require vue-resource
+//= require vuex
 //= require products
 //= require turbolinks
 //= require_tree .

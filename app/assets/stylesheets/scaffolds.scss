@@ -83,3 +83,21 @@ div {
 label {
   display: block;
 }
+
+.not_available {
+  position: absolute;
+top: 0px;
+width: 100%;
+left: 0px;
+right: 0px;
+border-radius: 0px;
+opacity: 0.5;
+}
+
+.strike-through {
+  text-decoration: line-through;
+}
+
+.upcase {
+  text-transform: uppercase;
+}

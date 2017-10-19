@@ -1,4 +1,7 @@
 <h1>Happy Shop</h1>
+<hr>
+<br>
+<div  id="products" >
 <div>
 
   <form class="form-inline">
@@ -9,8 +12,8 @@
           <select class="form-control">
             <option value="">Select Category</option>
             <option value="Lock-it Foundation">Lock-it Foundation</option>
-            <option value="Lock-it Foundation">Facemask</option>
-            <option value="Lock-it Foundation">Eye-liner</option>
+            <option value="Facemask">Facemask</option>
+            <option value="Eye-liner">Eye-liner</option>
           </select>
         </div>
       </div>
@@ -52,19 +55,22 @@
 </div>
 <br><hr>
 <div class="row">
-
-  
-  <div class="col-md-4">
+  <div class="col-md-4" v-for="product in products">
     <div class="card">
+      <div v-if="product.sold_out" class=" not_available alert alert-danger" role="alert">
+        Product is not available!
+      </div>
+      <img class="card-img-top" style="height: 150px;    width: auto;    margin: 0px auto;" :src="product.image_url" alt="Card image cap">
       <div class="card-body">
-        <h4 class="card-title">Card title</h4>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <h6 class="card-title">{{product.name}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{product.category}}</h6>
+        <p v-if="!product.under_sale" class="card-text"><b>${{product.price}}</b></p>
+        <p v-if="product.under_sale" class="card-text"><b>${{product.sale_price}} </b> <span class="strike-through">${{product.price}}</span> <span class="upcase">{{product.sale_text}}</span></p>
+
       </div>
     </div>
     <br>
   </div>
 
+</div>
 </div>
