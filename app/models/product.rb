@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+
+  validates :name, presence: true
   attr_accessor :image_url
 
   def self.scope(params)
@@ -16,7 +18,7 @@ class Product < ApplicationRecord
     scope = scope.where(price: (minimum_params.to_i)..(maximum_params.to_i))
 
     #available
-    scope = scope.where.not(sold_out: true) if params[:available] == "true"
+    scope = scope.where.not(sold_out: true) if params[:available].to_s == "true"
 
     #sort_by
     unless params[:sortBy].blank?
